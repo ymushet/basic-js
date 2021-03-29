@@ -1,4 +1,4 @@
-const CustomError = require("../extensions/custom-error");
+//const CustomError = require("../extensions/custom-error");
 
 class VigenereCipheringMachine {
   constructor(direct) {
@@ -10,6 +10,9 @@ class VigenereCipheringMachine {
   }
   encrypt(message, key) {
     errorHandling(message, key);
+    if (message === undefined || key === undefined) {
+      throw new CustomError("Error");
+    }
     let resultStr = "";
     const lettersAlphabet = "abcdefghijklmnopqrstuvwxyz".split("");
     const strHelper = checkForLetters(message).toLowerCase();
@@ -26,6 +29,9 @@ class VigenereCipheringMachine {
   }
   decrypt(message, key) {
     errorHandling(message, key);
+    if (message === undefined || key === undefined) {
+      throw new CustomError("Error");
+    }
     let resultStr = "";
     const lettersAlphabet = "abcdefghijklmnopqrstuvwxyz".split("");
     const strHelper = checkForLetters(message).toLowerCase();
@@ -88,4 +94,3 @@ function errorHandling(message, key) {
   }
 }
 
-module.exports = VigenereCipheringMachine;
